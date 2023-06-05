@@ -11,7 +11,7 @@ export const MainContainer = styled.div`
   background: url("https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg");
   background-size: cover;
   background-attachment: fixed;
-  color: black;
+  color: #001f3f;
 `;
 
 export const ContainerConvert = styled.div`
@@ -40,7 +40,7 @@ export const Table = styled.table`
   width: 90%;
   margin-top: 60px;
   text-align: center;
-  background-color: purple;
+  background-color: #001f3f;
   box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
 `;
 

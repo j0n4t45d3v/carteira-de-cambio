@@ -3,9 +3,12 @@ import styled from 'styled-components';
 export const Input = styled.input`
   width: 80%;
   height: 30px;
-  border: none;
+  border: 2px solid #235689;
   border-radius: 3px;
   padding: 5px 15px;
-  background-color: lightgray;
+  background-color: transparent;
   outline: none;
+  &::placeholder {
+    color: #235689;
+  }
 `;
