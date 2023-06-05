@@ -1,12 +1,17 @@
 import styled from 'styled-components';
+import { FiEdit, FiTrash2 } from 'react-icons/fi'
 
 export const MainContainer = styled.div`
   height: 100vh;
+  /* max-height: 100%; */
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: lightgray;
+  background: url("https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  color: #001f3f;
 `;
 
 export const ContainerConvert = styled.div`
@@ -15,7 +20,12 @@ export const ContainerConvert = styled.div`
   top: 20px;
   height: 50%;
   width: 90%;
-  background-color: gray;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
 `;
 export const ContainerList = styled.div`
   height: 50%;
@@ -23,13 +33,15 @@ export const ContainerList = styled.div`
   justify-content: center;
   align-items: start;
   width: 100%;
-  background-color: lightgray;
+  background-color: transparent;
 `;
 
 export const Table = styled.table`
-  margin-top: 40px;
   width: 90%;
+  margin-top: 60px;
   text-align: center;
+  background-color: #001f3f;
+  box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
 `;
 
 export const TableHeader = styled.thead`
@@ -42,7 +54,7 @@ export const TableHeader = styled.thead`
 
 export const TableBody = styled.tbody`
   & td {
-    background-color: gray;
+    background-color: lightblue;
   }
 `;
 
@@ -55,18 +67,39 @@ export const DivInput = styled.div`
 `;
 export const Button = styled.button`
   width: 200px;
+  transform: scale(1.2);
   padding: 5px;
   background-color: green;
   border: none;
   border-radius: 3px;
   color: white;
+  cursor: pointer;
+  transition: 0.6s;
+  &:hover {
+    background-color: darkgreen;
+  }
+`;
+
+export const ContainerSeparate = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  top: 40px;
+`;
+
+export const ContainerInputs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 export const Inputs = styled.input`
   margin: 10px;
   background-color: transparent;
-  border: none;
-  border-bottom: 2px solid blue;
+  border: 1px solid blue;
+  border-radius: 3px;
   padding: 5px;
   outline: none;
   color: black;
@@ -88,3 +121,10 @@ export const Select = styled.select`
     color: white;
   }
 `;
+
+export const EditIcon = styled(FiEdit)`
+cursor: pointer;
+`
+export const ExcludeIcon = styled(FiTrash2)`
+cursor: pointer;
+`

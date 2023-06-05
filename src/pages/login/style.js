@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Title = styled.h1`
   font-size: 70px;
+  color: #001f3f;
 `;
 
 export const ContainerLogin = styled.div`
@@ -13,11 +14,15 @@ export const ContainerLogin = styled.div`
 
 export const ContainerLoginInputs = styled.div`
   display: flex;
-  height: 100vh;
+  position: absolute;
+  background-color: white;
+  width: 30%;
+  height: 60%;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   flex-grow: 1;
+  border-radius: 5px;
 `;
 
 export const Inputs = styled.div`
@@ -30,10 +35,9 @@ export const Inputs = styled.div`
 `;
 
 export const EnterButton = styled.button`
-  position: relative;
-  top: -10px;
   width: 60%;
-  padding: 10px 50px;
+  text-align: center;
+  padding: 10px;
   border-radius: 3px;
   border: none;
   cursor: pointer;
@@ -47,7 +51,9 @@ export const EnterButton = styled.button`
   }
 `;
 
-export const Banner = styled.img`
+export const Banner = styled.div`
   height: 100vh;
-  width: 50%;
+  width: 100%;
+  background: url('https://images.pexels.com/photos/534216/pexels-photo-534216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
 `;
