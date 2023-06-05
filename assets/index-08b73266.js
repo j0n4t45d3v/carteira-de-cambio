@@ -146,6 +146,7 @@ Error generating stack: `+o.message+`
   background: url("https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg");
   background-size: cover;
   background-attachment: fixed;
+  color: black;
 `,uv=ne.div`
   position: relative;
   border-radius: 5px;
