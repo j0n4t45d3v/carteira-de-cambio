@@ -11,6 +11,7 @@ export const MainContainer = styled.div`
   background: url("https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg");
   background-size: cover;
   background-attachment: fixed;
+  color: black;
 `;
 
 export const ContainerConvert = styled.div`
