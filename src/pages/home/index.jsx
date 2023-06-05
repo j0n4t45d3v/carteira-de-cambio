@@ -1,7 +1,12 @@
+import { Header } from '../../components/header';
 import {
-    Button,
+  Button,
   ContainerConvert,
+  ContainerInputs,
   ContainerList,
+  ContainerSeparate,
+  EditIcon,
+  ExcludeIcon,
   Inputs,
   MainContainer,
   Select,
@@ -16,32 +21,41 @@ export function Home() {
   return (
     <MainContainer>
       <ContainerConvert>
-        <Inputs placeholder="Descricão da despesa" />
-        <Inputs placeholder="Valor" />
-        <label htmlFor="">Categoria de despesa </label>
-        <Select>
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Transporte ">Transporte</option>
-          <option value="Saúde">Saúde</option>
-          <option value="Trabalho">Trabalho</option>
-        </Select>
-        <label htmlFor="">Metodo de pagamento </label>
-        <Select>
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Transporte ">Transporte</option>
-          <option value="Saúde">Saúde</option>
-          <option value="Trabalho">Trabalho</option>
-        </Select>
-        <label htmlFor="">Moeda </label>
-        <Select>
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Transporte ">Transporte</option>
-          <option value="Saúde">Saúde</option>
-          <option value="Trabalho">Trabalho</option>
-        </Select>
+        <Header />
+        <ContainerSeparate>
+          <Inputs placeholder="Descricão da despesa" />
+          <Inputs type="number" placeholder="Valor" />
+          <ContainerInputs>
+            <label htmlFor="">Categoria de despesa </label>
+            <Select>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Trabalho">Trabalho</option>
+            </Select>
+          </ContainerInputs>
+        </ContainerSeparate>
+        <ContainerSeparate>
+          <ContainerInputs>
+            <label htmlFor="">Metodo de pagamento </label>
+            <Select>
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="CartãoDeCredito">Cartão de Credito</option>
+              <option value="CartãoDeDebito">Cartão de Debito</option>
+            </Select>
+          </ContainerInputs>
+          <ContainerInputs>
+            <label htmlFor="">Moeda </label>
+            <Select>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Trabalho">Trabalho</option>
+            </Select>
+          </ContainerInputs>
+        </ContainerSeparate>
         <Button>Adicionar despesa</Button>
       </ContainerConvert>
       <ContainerList>
@@ -69,14 +83,14 @@ export function Home() {
               return (
                 // eslint-disable-next-line react/jsx-key
                 <tr>
-                  <td>a</td>
-                  <td>b</td>
-                  <td>c</td>
-                  <td>a</td>
-                  <td>b</td>
-                  <td>c</td>
-                  <td>b</td>
-                  <td>c</td>
+                  <td>Cinema</td>
+                  <td>Lazer</td>
+                  <td>Dinheiro</td>
+                  <td>40.59</td>
+                  <td>Dolar Comercial</td>
+                  <td>5.58</td>
+                  <td>um valor ai</td>
+                  <td><EditIcon onClick={() => alert("editado")}/> <ExcludeIcon onClick={() => alert("excluido")}/></td>
                 </tr>
               );
             })}
