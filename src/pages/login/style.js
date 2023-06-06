@@ -16,11 +16,10 @@ export const ContainerLoginInputs = styled.div`
   display: flex;
   position: absolute;
   background-color: white;
-  width: 30%;
-  height: 60%;
+  padding: 40px 40px;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-grow: 1;
   border-radius: 5px;
 `;
@@ -31,11 +30,11 @@ export const Inputs = styled.div`
   align-items: center;
   gap: 40px;
   justify-content: center;
-  width: 80%;
+  width: 100%;
 `;
 
 export const EnterButton = styled.button`
-  width: 60%;
+  width: 100%;
   text-align: center;
   padding: 10px;
   border-radius: 3px;
@@ -45,6 +44,7 @@ export const EnterButton = styled.button`
   background-color: #001f3f;
   color: white;
   font-weight: 800;
+  margin: 20px;
   transition: 0.3s;
   &:hover {
     background-color: #235689;
