@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Header } from '../../components/header';
 import {
   Button,
@@ -14,9 +15,11 @@ import {
   TableBody,
   TableHeader,
 } from './style';
+import { UserContext } from '../../context';
 
 export function Home() {
   const array = [1, 2, 3, 4, 5];
+  
 
   return (
     <MainContainer>

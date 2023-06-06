@@ -33,6 +33,21 @@ export const Inputs = styled.div`
   width: 100%;
 `;
 
+export const DisableButton = styled.button`
+   width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  opacity: 0.5; /* Exemplo de estilo - reduzir a opacidade */
+  cursor: not-allowed;
+  font-size: 15px;
+  background-color: #001f3f;
+  color: white;
+  font-weight: 800;
+  margin: 20px;
+`;
+
 export const EnterButton = styled.button`
   width: 100%;
   text-align: center;
