@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { InputLogin } from '../../components/input-login';
-import { UserContext } from '../../context';
+import { UserContext } from '../../context/user';
 import {
   Banner,
   ContainerLogin,

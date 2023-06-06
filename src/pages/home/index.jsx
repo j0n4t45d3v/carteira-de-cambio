@@ -15,11 +15,11 @@ import {
   TableBody,
   TableHeader,
 } from './style';
-import { UserContext } from '../../context';
+import { WalletContext } from '../../context/wallet';
 
 export function Home() {
   const array = [1, 2, 3, 4, 5];
-  
+  const { wallet } = useContext(WalletContext);
 
   return (
     <MainContainer>
