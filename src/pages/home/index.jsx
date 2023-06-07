@@ -18,13 +18,13 @@ import {
 import { WalletContext } from '../../context/wallet';
 
 export function Home() {
-  const array = [1, 2, 3, 4, 5];
+  const array = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
   const { wallet } = useContext(WalletContext);
 
   return (
     <MainContainer>
+      <Header />
       <ContainerConvert>
-        <Header />
         <ContainerSeparate>
           <Inputs placeholder="Descricão da despesa" />
           <Inputs type="number" placeholder="Valor" />
@@ -51,11 +51,9 @@ export function Home() {
           <ContainerInputs>
             <label htmlFor="">Moeda </label>
             <Select>
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saúde">Saúde</option>
-              <option value="Trabalho">Trabalho</option>
+              {wallet.currencies.map((item) => {
+              return (<option value={item.code}>{item.code}</option>)
+              })}
             </Select>
           </ContainerInputs>
         </ContainerSeparate>
@@ -75,6 +73,9 @@ export function Home() {
               <td>Moeda</td>
               <td>Câmbio utilizado</td>
               <td>
+                Valor convertido
+              </td>
+              <td>
                 Moeda de
                 <br /> conversão
               </td>
@@ -83,6 +84,7 @@ export function Home() {
           </TableHeader>
           <TableBody>
             {array.map((item) => {
+              console.log(wallet);
               return (
                 // eslint-disable-next-line react/jsx-key
                 <tr>
@@ -93,6 +95,7 @@ export function Home() {
                   <td>Dolar Comercial</td>
                   <td>5.58</td>
                   <td>um valor ai</td>
+                  <td>Real</td>
                   <td><EditIcon onClick={() => alert("editado")}/> <ExcludeIcon onClick={() => alert("excluido")}/></td>
                 </tr>
               );

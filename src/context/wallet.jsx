@@ -4,17 +4,25 @@ import { connection } from '../service/api';
 export const WalletContext = createContext({});
 
 export function WalletProvider({ children }) {
-  const [wallet, setWallet] = useState({});
+  const [wallet, setWallet] = useState([]);
 
   useEffect(() => {
-    connection.get('/json/all')
-    .then((res) => {
-      console.log(res.data);
-      setWallet(res.data);
-    })
-  })
+    connection.get('/json/all').then((res) => {
+      const keys = Object.keys(res.data);
 
-  return <WalletContext.Provider value={ wallet }>
-    {children}
-  </WalletContext.Provider>;
+      const filter = keys.filter((key) => key !== 'USDT');
+
+      const currencies = filter.map((key) => {
+        return res.data[key];
+      });
+      setWallet({ currencies: currencies, expenses: [] });
+
+      // console.log(wallet);
+    });
+  }, [wallet, setWallet]);
+
+
+  return (
+    <WalletContext.Provider value={{wallet}}>{children}</WalletContext.Provider>
+  );
 }

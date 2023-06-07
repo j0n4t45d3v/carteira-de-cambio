@@ -1,60 +1,89 @@
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import styled from 'styled-components';
-import { FiEdit, FiTrash2 } from 'react-icons/fi'
 
 export const MainContainer = styled.div`
-  height: 100vh;
-  /* max-height: 100%; */
+  max-height: 100vh;
+  height: 100%;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg");
+  justify-content: space-between;
+  background: url('https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg');
   background-size: cover;
   background-attachment: fixed;
   color: #001f3f;
 `;
 
 export const ContainerConvert = styled.div`
-  position: relative;
   border-radius: 5px;
-  top: 20px;
-  height: 50%;
+  height: 400px;
   width: 90%;
   background-color: antiquewhite;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
 `;
 export const ContainerList = styled.div`
-  height: 50%;
+  position: relative;
+  max-height: 200px;
   display: flex;
   justify-content: center;
   align-items: start;
-  width: 100%;
+  margin-bottom: 20px;
+  width: 90%;
   background-color: transparent;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0px; /* Largura da barra de rolagem */
+  }
+
+
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    padding: 2px;
+  }
+
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+  }
+
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
 `;
 
 export const Table = styled.table`
-  width: 90%;
-  margin-top: 60px;
+  width: 100%;
   text-align: center;
-  background-color: #001f3f;
+  border-collapse: collapse;
+  border-spacing: 0;
   box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
+  font-size: 14px;
+  border: none;
+
+  background-color: lightblue;
 `;
 
 export const TableHeader = styled.thead`
-  background-color: #f2f2f2;
+  background-color: #001f3f;
+  position: sticky;
+  top: 0;
   & td {
-    font-weight: bold;
+    font-weight: 900;
     width: 80px;
+    color: white;
   }
 `;
 
 export const TableBody = styled.tbody`
   & td {
-    background-color: lightblue;
+    padding: 10px;
+    border: 1.5px solid #001f3f;
   }
 `;
 
@@ -85,8 +114,6 @@ export const ContainerSeparate = styled.div`
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
-  position: relative;
-  top: 40px;
 `;
 
 export const ContainerInputs = styled.div`
@@ -123,8 +150,8 @@ export const Select = styled.select`
 `;
 
 export const EditIcon = styled(FiEdit)`
-cursor: pointer;
-`
+  cursor: pointer;
+`;
 export const ExcludeIcon = styled(FiTrash2)`
-cursor: pointer;
-`
+  cursor: pointer;
+`;
