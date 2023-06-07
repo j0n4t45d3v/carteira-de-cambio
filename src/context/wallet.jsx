@@ -19,7 +19,7 @@ export function WalletProvider({ children }) {
 
       // console.log(wallet);
     });
-  }, [wallet, setWallet]);
+  }, []);
 
 
   return (

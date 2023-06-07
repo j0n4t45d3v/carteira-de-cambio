@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Header } from '../../components/header';
 import {
   Button,
@@ -20,6 +20,18 @@ import { WalletContext } from '../../context/wallet';
 export function Home() {
   const array = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
   const { wallet } = useContext(WalletContext);
+
+  const [description, setDescription] = useState("") 
+  const [value, setValue] = useState("") 
+  const [despense, setDespense] = useState("") 
+  const [payment, setPayment] = useState("") 
+  const [money, setMoney] = useState("") 
+
+
+  function addExpense(){
+
+  }
+
 
   return (
     <MainContainer>
