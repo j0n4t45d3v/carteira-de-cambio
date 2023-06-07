@@ -5,10 +5,6 @@ export const UserContext = createContext({});
 export function UserProvider({ children }) {
   const [user, setUser] = useState({});
 
-  function addUser(user) {
-    setUser(user);
-  }
-
   const values = {
     user,
     setUser,
