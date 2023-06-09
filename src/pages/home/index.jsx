@@ -21,7 +21,7 @@ import {
 
 export function Home() {
   const array = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
-  const { wallet, pushExpense } = useContext(WalletContext);
+  const { wallet, pushExpense, moneyUsed } = useContext(WalletContext);
   const navigate = useNavigate();
 
   const [description, setDescription] = useState('');
@@ -122,7 +122,8 @@ export function Home() {
             <TableBody>
               {wallet.expenses?.length > 0 ? (
                 wallet.expenses.map((item) => {
-                  console.log(item);
+                  const valueMoneyUsed = moneyUsed(item.money);
+                  const convertedValue = valueMoneyUsed * Number(item.value).toFixed(2);
                   return (
                     // eslint-disable-next-line react/jsx-key
                     <tr>
@@ -131,8 +132,8 @@ export function Home() {
                       <td>{item.payment}</td>
                       <td>{item.value}</td>
                       <td>{item.money}</td>
-                      <td>5.58</td>
-                      <td>um valor ai</td>
+                      <td>{valueMoneyUsed}</td>
+                      <td>{convertedValue.toFixed(2)}</td>
                       <td>Real</td>
                       <td>
                         <EditIcon onClick={() => alert('editado')} />{' '}
