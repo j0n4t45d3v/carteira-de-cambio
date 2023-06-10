@@ -35,6 +35,16 @@ export function WalletProvider({ children }) {
     setExpenses(newExpenses);
   }
 
+  function editExpense(expense) {
+    const newExpenses = expenses.map((item) => {
+      if (item === expense) {
+        return expense;
+      }
+      return item;
+    });
+    setExpenses(newExpenses);
+  }
+
   function moneyUsed(money) {
     let value = 0;
 
@@ -48,7 +58,7 @@ export function WalletProvider({ children }) {
 
   return (
     <WalletContext.Provider
-      value={{ wallet, pushExpense, moneyUsed, expenses }}
+      value={{ wallet, pushExpense, moneyUsed, expenses, removeExpense, editExpense }}
     >
       {children}
     </WalletContext.Provider>

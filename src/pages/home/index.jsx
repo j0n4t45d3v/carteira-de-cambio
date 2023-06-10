@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/header';
+import { Modal } from '../../components/modal';
 import { WalletContext } from '../../context/wallet';
 import {
   Button,
@@ -12,6 +13,7 @@ import {
   EditIcon,
   ExcludeIcon,
   Inputs,
+  Label,
   MainContainer,
   Select,
   Table,
@@ -21,7 +23,7 @@ import {
 
 export function Home() {
   const array = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
-  const { wallet, pushExpense, moneyUsed } = useContext(WalletContext);
+  const { wallet, pushExpense, moneyUsed, removeExpense } = useContext(WalletContext);
   const navigate = useNavigate();
 
   const [description, setDescription] = useState('');
@@ -29,6 +31,8 @@ export function Home() {
   const [despenseCategory, setDespenseCategory] = useState('');
   const [payment, setPayment] = useState('');
   const [money, setMoney] = useState('');
+
+  const [modal, setModal] = useState(false);
 
   function addExpense() {
     const expense = {
@@ -38,8 +42,33 @@ export function Home() {
       payment,
       money,
     };
+
+    if (
+      !expense.description ||
+      !expense.value ||
+      !expense.despenseCategory ||
+      !expense.payment ||
+      !expense.money
+    ) {
+      return alert('Preencha todos os campos');
+    }
     pushExpense(expense);
-    alert('Despesa adicionada com sucesso')
+    timeModal();
+  }
+
+  function editExpense(expense) {
+  }
+
+  function deleteExpense(expense) {
+    removeExpense(expense);
+  }
+
+  function timeModal() {
+    setModal(true);
+
+    setTimeout(() => {
+      setModal(false);
+    }, 700);
   }
 
   return (
@@ -48,17 +77,21 @@ export function Home() {
       <Container>
         <ContainerConvert>
           <ContainerSeparate>
+            {/* <Label htmlFor="">Descrição de despesa</Label> */}
             <Inputs
               placeholder="Descricão da despesa"
               onChange={(e) => setDescription(e.target.value)}
             />
+
+            {/* <Label htmlFor="">Categoria de despesa</Label> */}
             <Inputs
               type="number"
               placeholder="Valor"
               onChange={(e) => setValue(e.target.value)}
             />
+
             <ContainerInputs>
-              <label htmlFor="">Categoria de despesa </label>
+              <Label htmlFor="">Categoria de despesa</Label>
               <Select onChange={(e) => setDespenseCategory(e.target.value)}>
                 <option value="">selecione</option>
                 <option value="Alimentação">Alimentação</option>
@@ -71,7 +104,7 @@ export function Home() {
           </ContainerSeparate>
           <ContainerSeparate>
             <ContainerInputs>
-              <label htmlFor="">Metodo de pagamento </label>
+              <Label htmlFor="">Metodo de pagamento</Label>
               <Select onChange={(e) => setPayment(e.target.value)}>
                 <option value="">selecione</option>
                 <option value="Dinheiro">Dinheiro</option>
@@ -80,7 +113,7 @@ export function Home() {
               </Select>
             </ContainerInputs>
             <ContainerInputs>
-              <label htmlFor="">Moeda </label>
+              <Label htmlFor="">Moeda </Label>
               <Select onChange={(e) => setMoney(e.target.value)}>
                 <option value="">selecione</option>
                 {wallet.currencies !== undefined
@@ -123,7 +156,8 @@ export function Home() {
               {wallet.expenses?.length > 0 ? (
                 wallet.expenses.map((item) => {
                   const valueMoneyUsed = moneyUsed(item.money);
-                  const convertedValue = valueMoneyUsed * Number(item.value).toFixed(2);
+                  const convertedValue =
+                    valueMoneyUsed * Number(item.value).toFixed(2);
                   return (
                     // eslint-disable-next-line react/jsx-key
                     <tr>
@@ -135,9 +169,17 @@ export function Home() {
                       <td>{valueMoneyUsed}</td>
                       <td>{convertedValue.toFixed(2)}</td>
                       <td>Real</td>
-                      <td>
-                        <EditIcon onClick={() => alert('editado')} />{' '}
-                        <ExcludeIcon onClick={() => alert('excluido')} />
+                      <td
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-evenly',
+                          alignItems: 'center',
+                          cursor: 'default',
+                        }}
+                      >
+                        <EditIcon onClick={() => editExpense(item)} />
+                        {' | '}
+                        <ExcludeIcon onClick={() => deleteExpense(item)} />
                       </td>
                     </tr>
                   );
@@ -150,6 +192,7 @@ export function Home() {
             </TableBody>
           </Table>
         </ContainerList>
+        {modal ? <Modal text={"Despesa adicionada com sucesso"} /> : null}
       </Container>
     </MainContainer>
   );
