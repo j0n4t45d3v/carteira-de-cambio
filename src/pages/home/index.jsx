@@ -23,7 +23,7 @@ import {
 
 export function Home() {
   const array = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
-  const { wallet, pushExpense, moneyUsed } = useContext(WalletContext);
+  const { wallet, pushExpense, moneyUsed, removeExpense } = useContext(WalletContext);
   const navigate = useNavigate();
 
   const [description, setDescription] = useState('');
@@ -54,6 +54,13 @@ export function Home() {
     }
     pushExpense(expense);
     timeModal();
+  }
+
+  function editExpense(expense) {
+  }
+
+  function deleteExpense(expense) {
+    removeExpense(expense);
   }
 
   function timeModal() {
@@ -170,9 +177,9 @@ export function Home() {
                           cursor: 'default',
                         }}
                       >
-                        <EditIcon onClick={() => alert('editado')} />
+                        <EditIcon onClick={() => editExpense(item)} />
                         {' | '}
-                        <ExcludeIcon onClick={() => alert('excluido')} />
+                        <ExcludeIcon onClick={() => deleteExpense(item)} />
                       </td>
                     </tr>
                   );

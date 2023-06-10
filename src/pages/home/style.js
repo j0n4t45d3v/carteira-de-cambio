@@ -31,8 +31,8 @@ export const ContainerConvert = styled.div`
 `;
 export const ContainerList = styled.div`
   position: relative;
-  max-height: 200px;
-  display: flex;
+  max-height: 300px;
+  display: flex;  
   justify-content: center;
   align-items: start;
   margin-top: 20px;
