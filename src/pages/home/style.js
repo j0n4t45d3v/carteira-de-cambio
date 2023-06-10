@@ -1,5 +1,5 @@
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const MainContainer = styled.div`
   min-height: 100vh;
@@ -10,7 +10,8 @@ export const MainContainer = styled.div`
   align-items: center;
   justify-content: start;
   gap: 20px;
-  background: url('https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg');
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+    url('https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg');
   background-size: cover;
   background-attachment: scroll;
   color: #001f3f;
@@ -26,7 +27,7 @@ export const ContainerConvert = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
+  box-shadow: 1px 0 10px 0 rgba(255, 255, 255, 0.9);
 `;
 export const ContainerList = styled.div`
   position: relative;
@@ -34,6 +35,8 @@ export const ContainerList = styled.div`
   display: flex;
   justify-content: center;
   align-items: start;
+  margin-top: 20px;
+  box-shadow: 2px 0 10px 0 rgba(255, 255, 255, 0.5);
   margin-bottom: 20px;
   width: 90%;
   background-color: transparent;
@@ -61,7 +64,6 @@ export const Table = styled.table`
   text-align: center;
   border-collapse: separate;
   border-spacing: 1px;
-  box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
   font-size: 14px;
   border: none;
   border-radius: 3px;
@@ -82,8 +84,11 @@ export const TableHeader = styled.thead`
 `;
 
 export const TableBody = styled.tbody`
+  background-color: #00284b;
   & td {
     padding: 10px;
+    color: white;
+    border-radius: 3px;
   }
 `;
 

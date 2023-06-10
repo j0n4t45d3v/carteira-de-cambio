@@ -9,7 +9,7 @@ export const ContainerHeader = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
+  box-shadow: 1px 0 10px 0 rgba(255, 255, 255, 0.5);
   z-index: 1;
   padding: 10px;
 `

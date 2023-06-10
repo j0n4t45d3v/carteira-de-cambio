@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/header';
+import { Modal } from '../../components/modal';
 import { WalletContext } from '../../context/wallet';
 import {
   Button,
@@ -31,6 +32,8 @@ export function Home() {
   const [payment, setPayment] = useState('');
   const [money, setMoney] = useState('');
 
+  const [modal, setModal] = useState(false);
+
   function addExpense() {
     const expense = {
       description,
@@ -39,8 +42,26 @@ export function Home() {
       payment,
       money,
     };
+
+    if (
+      !expense.description ||
+      !expense.value ||
+      !expense.despenseCategory ||
+      !expense.payment ||
+      !expense.money
+    ) {
+      return alert('Preencha todos os campos');
+    }
     pushExpense(expense);
-    alert('Despesa adicionada com sucesso');
+    timeModal();
+  }
+
+  function timeModal() {
+    setModal(true);
+
+    setTimeout(() => {
+      setModal(false);
+    }, 700);
   }
 
   return (
@@ -164,6 +185,7 @@ export function Home() {
             </TableBody>
           </Table>
         </ContainerList>
+        {modal ? <Modal text={"Despesa adicionada com sucesso"} /> : null}
       </Container>
     </MainContainer>
   );
