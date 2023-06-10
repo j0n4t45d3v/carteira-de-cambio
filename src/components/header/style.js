@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const ContainerHeader = styled.header`
   width: 95%;
-  background-color: #fff;
+  background-color: #001f3f;
+  color: #fff;
   margin-top: 10px;
   border-radius: 5px;
   display: flex;

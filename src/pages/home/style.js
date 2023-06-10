@@ -18,14 +18,14 @@ export const MainContainer = styled.div`
 
 export const ContainerConvert = styled.div`
   border-radius: 5px;
-  height: 400px;
-  width: 90%;
-  padding: 10px;
-  background-color: antiquewhite;
+  width: 70%;
+  padding: 30px;
+  background-color: #001f3f;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  gap: 20px;
   box-shadow: 3px 0 20px 0 rgba(0, 0, 0, 0.9);
 `;
 export const ContainerList = styled.div`
@@ -116,6 +116,7 @@ export const ContainerSeparate = styled.div`
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
+  margin: 20px;
 `;
 
 export const ContainerInputs = styled.div`
@@ -126,25 +127,30 @@ export const ContainerInputs = styled.div`
 `;
 
 export const Inputs = styled.input`
-  margin: 10px;
   background-color: transparent;
-  border: 1px solid blue;
-  border-radius: 3px;
+  border: none;
+  border-bottom: 1px solid white;
+  /* border-radius: 3px; */
   padding: 5px;
   outline: none;
-  color: black;
+  color: white;
   &::placeholder {
-    color: blue;
+    color: white;
   }
+`;
+
+export const Label = styled.label`
+  color: white;
+  font-weight: 900;
 `;
 
 export const Select = styled.select`
   outline: none;
-  border: 1px solid blue;
+  border: 1px solid white;
   border-radius: 3px;
   background-color: transparent;
   padding: 1px;
-  color: blue;
+  color: white;
   text-align: center;
   & option {
     background-color: black;

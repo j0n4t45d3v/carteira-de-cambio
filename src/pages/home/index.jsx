@@ -12,6 +12,7 @@ import {
   EditIcon,
   ExcludeIcon,
   Inputs,
+  Label,
   MainContainer,
   Select,
   Table,
@@ -39,7 +40,7 @@ export function Home() {
       money,
     };
     pushExpense(expense);
-    alert('Despesa adicionada com sucesso')
+    alert('Despesa adicionada com sucesso');
   }
 
   return (
@@ -48,17 +49,21 @@ export function Home() {
       <Container>
         <ContainerConvert>
           <ContainerSeparate>
+            {/* <Label htmlFor="">Descrição de despesa</Label> */}
             <Inputs
               placeholder="Descricão da despesa"
               onChange={(e) => setDescription(e.target.value)}
             />
+
+            {/* <Label htmlFor="">Categoria de despesa</Label> */}
             <Inputs
               type="number"
               placeholder="Valor"
               onChange={(e) => setValue(e.target.value)}
             />
+
             <ContainerInputs>
-              <label htmlFor="">Categoria de despesa </label>
+              <Label htmlFor="">Categoria de despesa</Label>
               <Select onChange={(e) => setDespenseCategory(e.target.value)}>
                 <option value="">selecione</option>
                 <option value="Alimentação">Alimentação</option>
@@ -71,7 +76,7 @@ export function Home() {
           </ContainerSeparate>
           <ContainerSeparate>
             <ContainerInputs>
-              <label htmlFor="">Metodo de pagamento </label>
+              <Label htmlFor="">Metodo de pagamento</Label>
               <Select onChange={(e) => setPayment(e.target.value)}>
                 <option value="">selecione</option>
                 <option value="Dinheiro">Dinheiro</option>
@@ -80,7 +85,7 @@ export function Home() {
               </Select>
             </ContainerInputs>
             <ContainerInputs>
-              <label htmlFor="">Moeda </label>
+              <Label htmlFor="">Moeda </Label>
               <Select onChange={(e) => setMoney(e.target.value)}>
                 <option value="">selecione</option>
                 {wallet.currencies !== undefined
@@ -123,7 +128,8 @@ export function Home() {
               {wallet.expenses?.length > 0 ? (
                 wallet.expenses.map((item) => {
                   const valueMoneyUsed = moneyUsed(item.money);
-                  const convertedValue = valueMoneyUsed * Number(item.value).toFixed(2);
+                  const convertedValue =
+                    valueMoneyUsed * Number(item.value).toFixed(2);
                   return (
                     // eslint-disable-next-line react/jsx-key
                     <tr>
@@ -135,8 +141,16 @@ export function Home() {
                       <td>{valueMoneyUsed}</td>
                       <td>{convertedValue.toFixed(2)}</td>
                       <td>Real</td>
-                      <td>
-                        <EditIcon onClick={() => alert('editado')} />{' '}
+                      <td
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-evenly',
+                          alignItems: 'center',
+                          cursor: 'default',
+                        }}
+                      >
+                        <EditIcon onClick={() => alert('editado')} />
+                        {' | '}
                         <ExcludeIcon onClick={() => alert('excluido')} />
                       </td>
                     </tr>
