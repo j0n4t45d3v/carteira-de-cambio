@@ -11,7 +11,7 @@ export function Header(){
 
   function totalDispence(){
     let total = 0;
-    expenses.forEach((expense) => {
+    expenses?.forEach((expense) => {
       const valueMoneyUsed = moneyUsed(expense.money);
       const convertedValue = valueMoneyUsed * Number(expense.value).toFixed(2);
       total += Number(convertedValue);

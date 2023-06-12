@@ -19,8 +19,9 @@ import {
 } from './style';
 
 export function Home() {
-  const { wallet, pushExpense } = useContext(WalletContext);
+  const { wallet, pushExpense, editExpense } = useContext(WalletContext);
 
+  const [id, setId] = useState(null);
   const descriptionRef = useRef('');
   const valueRef = useRef('');
   const despenseCategoryRef = useRef('');
@@ -40,6 +41,7 @@ export function Home() {
 
   function addExpense() {
     const expense = {
+      id: wallet.expenses.length + 1,
       description: descriptionRef.current.value,
       value: valueRef.current.value,
       despenseCategory: despenseCategoryRef.current.value,
@@ -58,6 +60,31 @@ export function Home() {
     }
     pushExpense(expense);
     cleanFields();
+    timeModal();
+  }
+
+  function editExpenses() {
+    const expense = {
+      description: descriptionRef.current.value,
+      value: valueRef.current.value,
+      despenseCategory: despenseCategoryRef.current.value,
+      payment: paymentRef.current.value,
+      money: moneyRef.current.value,
+    };
+
+    if (
+      !expense.description ||
+      !expense.value ||
+      !expense.despenseCategory ||
+      !expense.payment ||
+      !expense.money
+    ) {
+      return alert('Preencha todos os campos');
+    }
+
+    editExpense(expense, id);
+    cleanFields();
+    setEdit(false);
     timeModal();
   }
 
@@ -118,7 +145,7 @@ export function Home() {
           </ContainerSeparate>
 
           {edit ? (
-            <Button onClick={() => setEdit(false)}>Editar despesa</Button>
+            <Button onClick={editExpenses}>Editar despesa</Button>
           ) : (
             <Button onClick={addExpense}>Adicionar despesa</Button>
           )}
@@ -126,10 +153,10 @@ export function Home() {
         <ContainerList>
           <Table>
             <TbHeader />
-            <TbBody edit={setEdit} />
+            <TbBody edit={setEdit} occupyFields={{setId, descriptionRef, valueRef, despenseCategoryRef, paymentRef, moneyRef } }/>
           </Table>
         </ContainerList>
-        {modal ? <Modal text={'Despesa adicionada com sucesso'} /> : null}
+        {modal ? <Modal text={'Despesa adicionada/editada com sucesso'} /> : null}
       </Container>
     </MainContainer>
   );
