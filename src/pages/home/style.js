@@ -1,5 +1,4 @@
-import { FiEdit, FiTrash2 } from 'react-icons/fi';
-import styled, { keyframes } from 'styled-components';
+import styled from "styled-components";
 
 export const MainContainer = styled.div`
   min-height: 100vh;
@@ -32,7 +31,7 @@ export const ContainerConvert = styled.div`
 export const ContainerList = styled.div`
   position: relative;
   max-height: 300px;
-  display: flex;  
+  display: flex;
   justify-content: center;
   align-items: start;
   margin-top: 20px;
@@ -69,27 +68,6 @@ export const Table = styled.table`
   border-radius: 3px;
 
   background-color: lightblue;
-`;
-
-export const TableHeader = styled.thead`
-  background-color: #001f3f;
-  position: sticky;
-  top: 0;
-  & td {
-    font-weight: 900;
-    width: 80px;
-    color: white;
-    border-radius: 3px;
-  }
-`;
-
-export const TableBody = styled.tbody`
-  background-color: #00284b;
-  & td {
-    padding: 10px;
-    color: white;
-    border-radius: 3px;
-  }
 `;
 
 export const Button = styled.button`
@@ -161,11 +139,4 @@ export const Select = styled.select`
     background-color: black;
     color: white;
   }
-`;
-
-export const EditIcon = styled(FiEdit)`
-  cursor: pointer;
-`;
-export const ExcludeIcon = styled(FiTrash2)`
-  cursor: pointer;
 `;

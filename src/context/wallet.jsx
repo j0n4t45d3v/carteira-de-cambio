@@ -35,14 +35,15 @@ export function WalletProvider({ children }) {
     setExpenses(newExpenses);
   }
 
-  function editExpense(expense) {
-    const newExpenses = expenses.map((item) => {
-      if (item === expense) {
+  function editExpense(expense, id) {
+    const newExpense = expenses.map((item) => {
+      if (item.id === id) {
         return expense;
       }
       return item;
     });
-    setExpenses(newExpenses);
+
+    setExpenses(newExpense);
   }
 
   function moneyUsed(money) {
