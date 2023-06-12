@@ -65,13 +65,10 @@ export function Home() {
       <Container>
         <ContainerConvert>
           <ContainerSeparate>
-            {/* <Label htmlFor="">Descrição de despesa</Label> */}
             <Inputs
               placeholder="Descricão da despesa"
               onChange={(e) => setDescription(e.target.value)}
             />
-
-            {/* <Label htmlFor="">Categoria de despesa</Label> */}
             <Inputs
               type="number"
               placeholder="Valor"
@@ -118,7 +115,6 @@ export function Home() {
           </ContainerSeparate>
           <Button onClick={addExpense}>Adicionar despesa</Button>
         </ContainerConvert>
-
         <ContainerList>
           <Table>
             <TbHeader />
