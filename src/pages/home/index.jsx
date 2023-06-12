@@ -56,7 +56,7 @@ export function Home() {
 
     setTimeout(() => {
       setModal(false);
-    }, 700);
+    }, 900);
   }
 
   return (
