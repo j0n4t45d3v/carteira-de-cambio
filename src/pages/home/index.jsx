@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Header } from '../../components/header';
 import { Modal } from '../../components/modal';
+import { TbBody } from '../../components/table-body';
+import { TbHeader } from '../../components/table-header';
 import { WalletContext } from '../../context/wallet';
 import {
   Button,
@@ -10,21 +11,15 @@ import {
   ContainerInputs,
   ContainerList,
   ContainerSeparate,
-  EditIcon,
-  ExcludeIcon,
   Inputs,
   Label,
   MainContainer,
   Select,
   Table,
-  TableBody,
-  TableHeader,
 } from './style';
 
 export function Home() {
-  const array = [1, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5, 2, 3, 4, 5];
-  const { wallet, pushExpense, moneyUsed, removeExpense } = useContext(WalletContext);
-  const navigate = useNavigate();
+  const { wallet, pushExpense } = useContext(WalletContext);
 
   const [description, setDescription] = useState('');
   const [value, setValue] = useState('');
@@ -54,13 +49,6 @@ export function Home() {
     }
     pushExpense(expense);
     timeModal();
-  }
-
-  function editExpense(expense) {
-  }
-
-  function deleteExpense(expense) {
-    removeExpense(expense);
   }
 
   function timeModal() {
@@ -133,66 +121,11 @@ export function Home() {
 
         <ContainerList>
           <Table>
-            <TableHeader>
-              <tr>
-                <td>Descrição</td>
-                <td>Tag</td>
-                <td>
-                  Método de <br />
-                  pagamento
-                </td>
-                <td>Valor</td>
-                <td>Moeda</td>
-                <td>Câmbio utilizado</td>
-                <td>Valor convertido</td>
-                <td>
-                  Moeda de
-                  <br /> conversão
-                </td>
-                <td>Editar/Excluir</td>
-              </tr>
-            </TableHeader>
-            <TableBody>
-              {wallet.expenses?.length > 0 ? (
-                wallet.expenses.map((item) => {
-                  const valueMoneyUsed = moneyUsed(item.money);
-                  const convertedValue =
-                    valueMoneyUsed * Number(item.value).toFixed(2);
-                  return (
-                    // eslint-disable-next-line react/jsx-key
-                    <tr>
-                      <td>{item.description}</td>
-                      <td>{item.despenseCategory}</td>
-                      <td>{item.payment}</td>
-                      <td>{item.value}</td>
-                      <td>{item.money}</td>
-                      <td>{valueMoneyUsed}</td>
-                      <td>{convertedValue.toFixed(2)}</td>
-                      <td>Real</td>
-                      <td
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-evenly',
-                          alignItems: 'center',
-                          cursor: 'default',
-                        }}
-                      >
-                        <EditIcon onClick={() => editExpense(item)} />
-                        {' | '}
-                        <ExcludeIcon onClick={() => deleteExpense(item)} />
-                      </td>
-                    </tr>
-                  );
-                })
-              ) : (
-                <tr>
-                  <td colSpan="9">Nenhuma despesa cadastrada</td>
-                </tr>
-              )}
-            </TableBody>
+            <TbHeader />
+            <TbBody />
           </Table>
         </ContainerList>
-        {modal ? <Modal text={"Despesa adicionada com sucesso"} /> : null}
+        {modal ? <Modal text={'Despesa adicionada com sucesso'} /> : null}
       </Container>
     </MainContainer>
   );
