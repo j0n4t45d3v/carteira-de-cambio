@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Header } from '../../components/header';
 import { Modal } from '../../components/modal';
 import { TbBody } from '../../components/table-body';
@@ -21,21 +21,30 @@ import {
 export function Home() {
   const { wallet, pushExpense } = useContext(WalletContext);
 
-  const [description, setDescription] = useState('');
-  const [value, setValue] = useState('');
-  const [despenseCategory, setDespenseCategory] = useState('');
-  const [payment, setPayment] = useState('');
-  const [money, setMoney] = useState('');
+  const descriptionRef = useRef('');
+  const valueRef = useRef('');
+  const despenseCategoryRef = useRef('');
+  const paymentRef = useRef('');
+  const moneyRef = useRef('');
 
+  const [edit, setEdit] = useState(false);
   const [modal, setModal] = useState(false);
+
+  function cleanFields() {
+    descriptionRef.current.value = '';
+    valueRef.current.value = '';
+    despenseCategoryRef.current.value = '';
+    paymentRef.current.value = '';
+    moneyRef.current.value = '';
+  }
 
   function addExpense() {
     const expense = {
-      description,
-      value,
-      despenseCategory,
-      payment,
-      money,
+      description: descriptionRef.current.value,
+      value: valueRef.current.value,
+      despenseCategory: despenseCategoryRef.current.value,
+      payment: paymentRef.current.value,
+      money: moneyRef.current.value,
     };
 
     if (
@@ -48,6 +57,7 @@ export function Home() {
       return alert('Preencha todos os campos');
     }
     pushExpense(expense);
+    cleanFields();
     timeModal();
   }
 
@@ -65,19 +75,12 @@ export function Home() {
       <Container>
         <ContainerConvert>
           <ContainerSeparate>
-            <Inputs
-              placeholder="Descricão da despesa"
-              onChange={(e) => setDescription(e.target.value)}
-            />
-            <Inputs
-              type="number"
-              placeholder="Valor"
-              onChange={(e) => setValue(e.target.value)}
-            />
+            <Inputs placeholder="Descricão da despesa" ref={descriptionRef} />
+            <Inputs type="number" placeholder="Valor" ref={valueRef} />
 
             <ContainerInputs>
               <Label htmlFor="">Categoria de despesa</Label>
-              <Select onChange={(e) => setDespenseCategory(e.target.value)}>
+              <Select ref={despenseCategoryRef}>
                 <option value="">selecione</option>
                 <option value="Alimentação">Alimentação</option>
                 <option value="Lazer">Lazer</option>
@@ -90,7 +93,7 @@ export function Home() {
           <ContainerSeparate>
             <ContainerInputs>
               <Label htmlFor="">Metodo de pagamento</Label>
-              <Select onChange={(e) => setPayment(e.target.value)}>
+              <Select ref={paymentRef}>
                 <option value="">selecione</option>
                 <option value="Dinheiro">Dinheiro</option>
                 <option value="CartãoDeCredito">Cartão de Credito</option>
@@ -99,7 +102,7 @@ export function Home() {
             </ContainerInputs>
             <ContainerInputs>
               <Label htmlFor="">Moeda </Label>
-              <Select onChange={(e) => setMoney(e.target.value)}>
+              <Select ref={moneyRef}>
                 <option value="">selecione</option>
                 {wallet.currencies !== undefined
                   ? wallet.currencies.map((item) => {
@@ -113,12 +116,17 @@ export function Home() {
               </Select>
             </ContainerInputs>
           </ContainerSeparate>
-          <Button onClick={addExpense}>Adicionar despesa</Button>
+
+          {edit ? (
+            <Button onClick={() => setEdit(false)}>Editar despesa</Button>
+          ) : (
+            <Button onClick={addExpense}>Adicionar despesa</Button>
+          )}
         </ContainerConvert>
         <ContainerList>
           <Table>
             <TbHeader />
-            <TbBody />
+            <TbBody edit={setEdit} />
           </Table>
         </ContainerList>
         {modal ? <Modal text={'Despesa adicionada com sucesso'} /> : null}

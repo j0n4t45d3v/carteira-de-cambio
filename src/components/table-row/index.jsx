@@ -2,10 +2,12 @@ import { useContext } from 'react';
 import { WalletContext } from '../../context/wallet';
 import { EditIcon, ExcludeIcon } from './style';
 
-export function Row({ item, moneyUsed, convertedValue }) {
+export function Row({ item, moneyUsed, convertedValue, setEdit }) {
   const { removeExpense } = useContext(WalletContext);
 
-  function editExpense(expense) {}
+  function editExpense(expense) {
+    setEdit(true)
+  }
 
   function deleteExpense(expense) {
     removeExpense(expense);

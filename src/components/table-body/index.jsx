@@ -3,7 +3,7 @@ import { Row } from "../table-row";
 import { WalletContext } from "../../context/wallet";
 import { TableBody } from "./style";
 
-export function TbBody() {
+export function TbBody({edit}) {
   const { wallet, moneyUsed } = useContext(WalletContext);
 
   return (
@@ -20,6 +20,7 @@ export function TbBody() {
               convertedValue={convertedValue}
               item={item}
               moneyUsed={valueMoneyUsed}
+              setEdit={edit}
             />
           );
         })
